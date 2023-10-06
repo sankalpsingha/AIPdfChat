@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
+import { UserButton } from "@clerk/nextjs";
 
 const navigation = [
   { name: "Product", href: "#" },
@@ -50,8 +51,9 @@ const Nav = () => {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <UserButton afterSignOutUrl="/" />
           <Link
-            href="#"
+            href="/sign-in"
             className={buttonVariants({
               variant: "outline",
               size: "sm",
@@ -60,7 +62,7 @@ const Nav = () => {
             Login
           </Link>
           <Link
-            href="#"
+            href="/sign-up"
             className={cn(
               buttonVariants({
                 size: "sm",
