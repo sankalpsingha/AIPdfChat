@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Nav from "@/components/Nav";
 import { ClerkProvider } from "@clerk/nextjs";
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,7 +20,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={cn(" min-h-screen", inter.className)}>
+        <body
+          className={cn(
+            "min-h-screen antialiased font-sans grainy",
+            inter.className
+          )}
+        >
           <Nav />
           {children}
         </body>

@@ -12,8 +12,8 @@ export default function Home() {
         <HeroSection />
         <FeatureSection />
         <CTASection />
-        <Footer />
       </MaxWidthWrapper>
+      <Footer />
     </div>
   );
 }
