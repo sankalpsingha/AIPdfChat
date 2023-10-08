@@ -1,10 +1,25 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button } from "@/components/ui/button";
+import { db } from "@/db";
 import { currentUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 const Dashboard = async () => {
   const user = await currentUser();
-  console.log(user?.id);
+  if (!user?.id) {
+    redirect("/auth-callback?origin=dashboard");
+  }
+
+  const dbUser = await db.user.findFirst({
+    where: {
+      id: user.id,
+    },
+  });
+
+  if (!dbUser) {
+    redirect("/auth-callback?origin=dashboard");
+  }
+
   return (
     <MaxWidthWrapper>
       <div className="mt-20 flex justify-between items-center border-b border-gray-300 pb-6">
